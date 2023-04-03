@@ -17,7 +17,7 @@
             {#each data.questions as question}
                 <tr>
                     <td>{question.questionId}</td>
-                    <td>{question.question}</td>
+                    <td><a href={`/question/${question.questionId}`}>{question.question}</a></td>
                     <td>{question.parentId}</td>
                 </tr>
             {/each}

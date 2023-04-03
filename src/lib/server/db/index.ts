@@ -16,3 +16,16 @@ limit $limit
   const rows = stmnt.all({ limit });
   return rows as Question[];
 }
+
+export function getQuestionById(questionId: number): Question[] {
+  const sql = `
+  select question_id as questionId
+  , question as question
+  , parent_id as parentId
+from questions
+where questions.question_id = $questionId  
+  `;
+  const stmnt = db.prepare(sql);
+  const row = stmnt.get({ questionId });
+  return row as Question[];
+}
