@@ -1,2 +1,25 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+    import type { PageData } from './$types';
+    export let data: PageData;
+</script>
+
+<h1>Questions</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>QuestionID</th>
+                <th>Question</th>
+                <th>ParentID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#each data.questions as question}
+                <tr>
+                    <td>{question.questionId}</td>
+                    <td>{question.question}</td>
+                    <td>{question.parentId}</td>
+                </tr>
+            {/each}
+        </tbody>
+    </table>
