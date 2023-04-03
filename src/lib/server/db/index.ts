@@ -56,3 +56,14 @@ where child.question_id = $questionId
   const row = stmnt.get({ questionId });
   return row as Question[];
 }
+
+export function updateQuestion(questionId: number, question: string, parentId: number): void {
+  const sql = `
+  update questions
+     set question = $question,
+     parent_id = $parentId
+   where question_id = $questionId
+`;
+  const stmnt = db.prepare(sql);
+  stmnt.run({ questionId, question, parentId });
+}
