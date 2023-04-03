@@ -53,6 +53,6 @@ on child.parent_id = parent.question_id
 where child.question_id = $questionId  
   `;
   const stmnt = db.prepare(sql);
-  const rows = stmnt.get({ questionId });
-  return rows as Question[];
+  const row = stmnt.get({ questionId });
+  return row as Question[];
 }
