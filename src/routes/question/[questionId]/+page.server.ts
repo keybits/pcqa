@@ -16,9 +16,16 @@ export const load = (({params}) => {
     }
 
     const children = getChildren(questionId);
-    const parent = getParent(questionId);
+
+    const parents = []
+    let n = questionId
+    while (n > 1) {
+        let parent = getParent(n);
+        parents.push(parent);
+        n = parent.questionId
+    }
 
     return {
-        question, children, parent
+        question, children, parents
     };
 }) satisfies PageServerLoad;
