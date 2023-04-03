@@ -5,7 +5,10 @@
 
 <p><a href="/">Home</a></p>
 
-<h1>Question {data.question.questionId}</h1>
+
+
+<h2><a href={`/question/${data.parent.questionId}`}>Previous question was: {data.parent.questionId}</a></h2>
+<h2>Question {data.question.questionId}</h2>
 
 <table class="table">
         <thead>

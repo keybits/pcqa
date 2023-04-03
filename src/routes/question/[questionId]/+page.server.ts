@@ -1,4 +1,4 @@
-import { getQuestionById, getChildren } from '$lib/server/db';
+import { getQuestionById, getChildren, getParent } from '$lib/server/db';
 import { error, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
@@ -16,8 +16,9 @@ export const load = (({params}) => {
     }
 
     const children = getChildren(questionId);
+    const parent = getParent(questionId);
 
     return {
-        question, children
+        question, children, parent
     };
 }) satisfies PageServerLoad;

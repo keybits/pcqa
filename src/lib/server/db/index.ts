@@ -41,3 +41,18 @@ where questions.parent_id = $questionId
   const rows = stmnt.all({ questionId });
   return rows as Question[];
 }
+
+export function getParent(questionId: number): Question[] {
+  const sql = `
+  select parent.question_id as questionId
+  , parent.question as question
+  , parent.parent_id as parentId
+from questions child
+join questions parent
+on child.parent_id = parent.question_id
+where child.question_id = $questionId  
+  `;
+  const stmnt = db.prepare(sql);
+  const rows = stmnt.get({ questionId });
+  return rows as Question[];
+}
