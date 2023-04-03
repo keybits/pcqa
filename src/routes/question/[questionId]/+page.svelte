@@ -25,3 +25,23 @@
         </tbody>
     </table>
 
+<h2>Answers</h2>
+
+<table class="table">
+        <thead>
+            <tr>
+                <th>QuestionID</th>
+                <th>Question</th>
+                <th>ParentID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#each data.children as question}
+                <tr>
+                    <td>{question.questionId}</td>
+                    <td><a href={`/question/${question.questionId}`}>{question.question}</a></td>
+                    <td>{question.parentId}</td>
+                </tr>
+            {/each}
+        </tbody>
+    </table>
