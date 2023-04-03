@@ -3,6 +3,8 @@
     export let data: PageData;
 </script>
 
+<p><a href="/">Home</a></p>
+
 <h1>Question {data.question.questionId}</h1>
 
 <table class="table">
