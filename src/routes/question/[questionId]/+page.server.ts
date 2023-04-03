@@ -21,7 +21,7 @@ export const load = (({params}) => {
     let n = questionId
     while (n > 1) {
         let parent = getParent(n);
-        parents.push(parent);
+        parents.unshift(parent);
         n = parent.questionId
     }
 
