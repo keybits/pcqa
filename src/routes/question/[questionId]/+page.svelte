@@ -7,62 +7,17 @@
 
 <h2>Question {data.question.questionId}</h2>
 
-<table class="table">
-        <thead>
-            <tr>
-                <th>QuestionID</th>
-                <th>Question</th>
-                <th>ParentID</th>
-            </tr>
-        </thead>
-        <tbody>
-                <tr>
-                    <td>{data.question.questionId}</td>
-                    <td>{data.question.question}</td>
-                    <td>{data.question.parentId}</td>
-                </tr>
+<div>
+    {#each data.parents as question}
+    <p><a href={`/question/${question.questionId}`}>{question.question}</a></p>
+    {/each}
+    <p>{data.question.question}</p>
 
-        </tbody>
-    </table>
 
-<h2>Answers</h2>
+<h2>Choices</h2>
+{#each data.children as question}
+    <p><a href={`/question/${question.questionId}`}>{question.question}</a></p>
+{/each}
+</div>
 
-<table class="table">
-        <thead>
-            <tr>
-                <th>QuestionID</th>
-                <th>Question</th>
-                <th>ParentID</th>
-            </tr>
-        </thead>
-        <tbody>
-            {#each data.children as question}
-                <tr>
-                    <td>{question.questionId}</td>
-                    <td><a href={`/question/${question.questionId}`}>{question.question}</a></td>
-                    <td>{question.parentId}</td>
-                </tr>
-            {/each}
-        </tbody>
-    </table>
 
-<h2>Parents</h2>
-
-<table class="table">
-        <thead>
-            <tr>
-                <th>QuestionID</th>
-                <th>Question</th>
-                <th>ParentID</th>
-            </tr>
-        </thead>
-        <tbody>
-            {#each data.parents as question}
-                <tr>
-                    <td>{question.questionId}</td>
-                    <td><a href={`/question/${question.questionId}`}>{question.question}</a></td>
-                    <td>{question.parentId}</td>
-                </tr>
-            {/each}
-        </tbody>
-    </table>
