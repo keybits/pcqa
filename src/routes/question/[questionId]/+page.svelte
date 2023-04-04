@@ -25,7 +25,7 @@
     </form>
 
 
-<h2>Choices</h2>
+<h2>Choose:</h2>
 {#each data.children as question}
     <p><a href={`/question/${question.questionId}`}>{question.question}</a></p>
 {/each}
