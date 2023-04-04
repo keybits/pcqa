@@ -19,7 +19,8 @@
 
 <div>
     {#each data.parents as question}
-    <p><a href={`/question/${question.questionId}`}>{question.question}</a></p>
+    <p><a href={`/question/${question.questionId}`}>{question.question}</a>
+    </p>
     {/each}
 
     {#if !editMode}
@@ -27,15 +28,18 @@
     {:else}
     <form method="post">
         <input
-            class="input"
             type="text"
             name="question"
             value={data.question.question}
             style="max-width: 50ch;"
         />
         <input type="hidden" name="questionId" value={data.question.questionId} />
-        <button class="button is-primary" type="submit" formaction="?/updateQuestion">Update</button>
-    <button on:click={toggleEditMode}>Cancel</button>
+        <input type="hidden" name="parentId" value={data.singleParent.parentId} />
+        <button type="submit" formaction="?/updateQuestion">Update</button>
+        {#if data.children.length === 0}
+        <button type="submit" formaction="?/deleteQuestion">Delete</button>
+        {/if}
+        <button on:click={toggleEditMode}>Cancel</button>
     </form>
     {/if}
 

@@ -66,6 +66,7 @@ export function updateQuestion(questionId: number, question: string): void {
   const stmnt = db.prepare(sql);
   stmnt.run({ questionId, question });
 }
+
 export function addQuestion(question: string, parentId: number): void {
   const sql = `
   insert into questions (question, parent_id)
@@ -73,4 +74,13 @@ export function addQuestion(question: string, parentId: number): void {
 `;
   const stmnt = db.prepare(sql);
   stmnt.run({ question, parentId });
+}
+
+export function deleteQuestion(questionId: number): void {
+  const sql = `
+  delete from questions
+  where question_id = $questionId
+`;
+  const stmnt = db.prepare(sql);
+  stmnt.run({ questionId });
 }

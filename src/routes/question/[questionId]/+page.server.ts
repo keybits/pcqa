@@ -1,5 +1,5 @@
-import { getQuestionById, getChildren, getParent, updateQuestion } from '$lib/server/db';
-import { error, type Actions } from '@sveltejs/kit';
+import { getQuestionById, getChildren, getParent, updateQuestion, addQuestion, deleteQuestion } from '$lib/server/db';
+import { error, redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load = (({params}) => {
@@ -7,6 +7,12 @@ export const load = (({params}) => {
 
     if (!questionId) {
         throw error(404, "Question not found");
+    }
+
+    const singleParent = getParent(questionId);
+
+    if (!singleParent) {
+        throw error(404, "Parent not found");
     }
 
     const question = getQuestionById(questionId);
@@ -26,7 +32,7 @@ export const load = (({params}) => {
     }
 
     return {
-        question, children, parents
+        question, children, singleParent, parents
     };
 }) satisfies PageServerLoad;
 
@@ -43,6 +49,7 @@ export const actions: Actions = {
         }
 
         updateQuestion(questionId, question);
+    },
     addQuestion: async ({ request }) => {
         const data = await request.formData();
 
@@ -57,5 +64,19 @@ export const actions: Actions = {
 
         addQuestion(question, parentId);
     },
+    deleteQuestion: async ({ request }) => {
+        const data = await request.formData();
+        
+        const questionIdStr = data.get('questionId')?.toString();
+        const questionId = questionIdStr ? parseInt(questionIdStr) : null;
+        const parentIdStr = data.get('parentId')?.toString();
+        const parentId = parentIdStr ? parseInt(parentIdStr) : null;
+
+        if (!(questionId)) {
+            throw error(400, 'questionId missing');
+        }
+
+        deleteQuestion(questionId);
+        throw redirect(303, '/question/' + parentId)
     }
 };
