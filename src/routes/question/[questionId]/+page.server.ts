@@ -43,5 +43,19 @@ export const actions: Actions = {
         }
 
         updateQuestion(questionId, question);
+    addQuestion: async ({ request }) => {
+        const data = await request.formData();
+
+        const question = data.get('question')?.toString();
+        // Use the questionId of the page to create the parentId for the new item
+        const parentIdStr = data.get('questionId')?.toString();
+        const parentId = parentIdStr ? parseInt(parentIdStr) : null;
+
+        if (!(question && parentId)) {
+            throw error(400, 'question or parentId missing');
+        }
+
+        addQuestion(question, parentId);
+    },
     }
 };
