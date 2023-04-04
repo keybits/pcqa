@@ -57,13 +57,12 @@ where child.question_id = $questionId
   return row as Question[];
 }
 
-export function updateQuestion(questionId: number, question: string, parentId: number): void {
+export function updateQuestion(questionId: number, question: string): void {
   const sql = `
   update questions
-     set question = $question,
-     parent_id = $parentId
+     set question = $question
    where question_id = $questionId
 `;
   const stmnt = db.prepare(sql);
-  stmnt.run({ questionId, question, parentId });
+  stmnt.run({ questionId, question });
 }

@@ -36,16 +36,12 @@ export const actions: Actions = {
 
         const questionIdStr = data.get('questionId')?.toString();
         const questionId = questionIdStr ? parseInt(questionIdStr) : null;
-
         const question = data.get('question')?.toString();
-        const parentIdStr = data.get('parentId')?.toString();
-        const parentId = parentIdStr ? parseInt(questionIdStr) : null;
 
-
-        if (!(questionId && question && parentId)) {
-            throw error(400, 'QuestionId, question or parentId missing');
+        if (!(questionId && question)) {
+            throw error(400, 'QuestionId or question missing');
         }
 
-        updateQuestion(questionId, question, parentId);
+        updateQuestion(questionId, question);
     }
 };

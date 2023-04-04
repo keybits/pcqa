@@ -20,13 +20,6 @@
             value={data.question.question}
             style="max-width: 50ch;"
         />
-        <input
-            class="input"
-            type="text"
-            name="parentId"
-            value={data.question.parentId}
-            style="max-width: 50ch;"
-        />
         <input type="hidden" name="questionId" value={data.question.questionId} />
         <button class="button is-primary" type="submit" formaction="?/updateQuestion">Update</button>
     </form>
