@@ -1,6 +1,12 @@
 <script lang="ts">
     import type { PageData } from './$types';
     export let data: PageData;
+    let editMode = false;
+
+    function toggleEditMode() {
+        editMode = !editMode;
+}
+
 </script>
 
 <p><a href="/">Home</a></p>
@@ -11,7 +17,10 @@
     {#each data.parents as question}
     <p><a href={`/question/${question.questionId}`}>{question.question}</a></p>
     {/each}
-    <p>{data.question.question}</p>
+
+    {#if !editMode}
+    <p>{data.question.question} <button on:click={toggleEditMode}>Edit</button></p>
+    {:else}
     <form method="post">
         <input
             class="input"
@@ -22,7 +31,9 @@
         />
         <input type="hidden" name="questionId" value={data.question.questionId} />
         <button class="button is-primary" type="submit" formaction="?/updateQuestion">Update</button>
+    <button on:click={toggleEditMode}>Cancel</button>
     </form>
+    {/if}
 
 
 <h2>Choose:</h2>
