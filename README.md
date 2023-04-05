@@ -1,31 +1,54 @@
-# create-svelte
+# pcqa - parent child, question answer
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This app presents web interface for navigating through a series of parent child relationships as represented in a database with the following structure:
 
-## Creating a project
+| question_id | question   | parent_id |
+|-------------|------------|-----------|
+| 1           | Question1  | 1         |
+| 2           | Question2  | 1         |
+| 3           | Question3  | 1         |
+| 4           | Question4  | 2         |
+| 5           | Question5  | 2         |
+| 6           | Question6  | 2         |
+| 7           | Question7  | 3         |
+| 8           | Question8  | 3         |
 
-If you're seeing this, you've probably already done this step. Congrats!
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+**Features:**  
+- You can edit, add and delete questions.
+- Delete is only available when a question has no children - click 'edit' to see the delete button.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+**This is a learning experiment:**  
+1. Use SQL techniques for a parent child tree from a single table as described in [this post](https://learnsql.com/blog/query-parent-child-tree/)
+2. Learn the basics of [SvelteKit](https://kit.svelte.dev/)
+3. Use a SQLite database with SvelteKit to create a 'full stack crud app'. We're using the '[better-sqlite3](https://github.com/WiseLibs/better-sqlite3)' library for node.js
 
-## Developing
+## TODO
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. Fix question 1 - as it has no parent, if it's null we get errors. To work round that we currently set itself as parent, but that messes up it think it's a child of itself
+1. Refactor to enable more than one 'questionnaire' (create new database table for each questionnaire and use [SvelteKit routing](https://www.thisdot.co/blog/a-deep-dive-into-sveltekit-routing-with-our-starter-dev-github-showcase) to dynamically show the correct questions.
+1. Add a new field to allow question 'description' that could include links / rich text to other resources
+1. Improve UI to make it clearer what to do
+1. Hide edit / add buttons unless a global 'edit mode' is turned on
+1. Add error handling
+1. Add tests!
 
-```bash
-npm run dev
+## Development
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### How to run the app on your computer
 
-## Building
+1. Clone this repo to a directory on your computer
+2. Make sure you have an up-to-date version of nodejs installed (18.15.0 recommended)
+3. Run `npm install`
+4. Create the database with `sqlite3 data/questions.sqlite3 < sql/schema.sql`
+5. Run the dev server and open a new browser tab with `npm run dev -- --open`
+6. Have fun editing and creating questions
+
+### Exploring the database
+
+[Beekeeper studio](https://github.com/beekeeper-studio/beekeeper-studio/releases) is an excellent app for exploring the database.
+
+### Building
 
 To create a production version of your app:
 
@@ -35,4 +58,6 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+### Deploying
+
+TODO: document deployment to relevant platforms - since we're using a SQLite database need to consider that.
