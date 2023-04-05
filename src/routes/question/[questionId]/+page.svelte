@@ -44,8 +44,8 @@
     {/if}
 
 {#if data.children.length === 0}
-<h2>You've reached the end of the diagnosis</h2>
-<p>Copy the url and anyone with the link will see the choices you made to get here.</p>
+<h2>You've reached the end of the questions</h2>
+<p>Share the url and anyone with the link will see the choices you made to get here.</p>
 {:else}
 <h2>Choose:</h2>
 {/if}
