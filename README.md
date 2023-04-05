@@ -38,7 +38,7 @@ This app presents web interface for navigating through a series of parent child 
 ### How to run the app on your computer
 
 1. Clone this repo to a directory on your computer
-2. Make sure you have an up-to-date version of nodejs installed (18.15.0 recommended)
+2. Make sure you have a supported version of nodejs installed (minimum 16.16.0 LTS, 18.15.0 LTS or newer recommended)
 3. Run `npm install`
 4. Create the database with `sqlite3 data/questions.sqlite3 < sql/schema.sql`
 5. Run the dev server and open a new browser tab with `npm run dev -- --open`
