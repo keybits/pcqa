@@ -41,7 +41,7 @@ This app presents web interface for navigating through a series of parent child 
 1. Make sure you have a supported version of nodejs installed (minimum 16.16.0 LTS, 18.15.0 LTS or newer recommended)
 1. Run `npm install`
 1. Rename `.env.example` to `.env` (this currently has the db path in it: `DB_PATH=./data/questions.sqlite3`)
-4. Create the database with `sqlite3 data/questions.sqlite3 < sql/schema.sql`
+4. Create the database with `sqlite3 data/questions.sqlite3 < schema.sql`
 5. Run the dev server and open a new browser tab with `npm run dev -- --open`
 6. Have fun editing and creating questions
 
