@@ -7,11 +7,21 @@ app = "pcqa"
 primary_region = "lhr"
 
 [env]
-  PORT = "8080"
+  PORT = "3000"
+  DB_PATH = "/data/pcqa_data/questions.sqlite3"
+
+# add a volume for our sqlite db
+[mounts]
+  source="pcqa_data"
+  destination="/data"
+
+[experimental]
+  cmd = "start.sh"
+  entrypoint = "sh"
 
 [http_service]
-  internal_port = 8080
+  internal_port = 3000
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = false
   auto_start_machines = true
   min_machines_running = 0
