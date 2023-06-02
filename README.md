@@ -59,6 +59,16 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-### Deploying
+### Deploy to fly.io
 
-TODO: document deployment to relevant platforms - since we're using a SQLite database need to consider that.
+This app is currently deployed to https://pcqa.fly.dev/
+
+WORK IN PROGRESS: This is currently a proof of concept and needs refining!
+
+To deploy your own version:
+
+1. Make sure you have `flyctl` installed and you're signed in (see the [Fly docs](https://fly.io/docs/hands-on/install-flyctl/))
+1. Run `fly launch` and choose the Organization you'd like to deploy to. Accept all the defaults.
+1. Change the value of `ORIGIN` in fly.toml to be the name of the app you're deploying to on Fly
+1. Run `fly deploy` and it should 'just work'!
+1. TODO: make scripts/migrate.sh actually migrate the db safely
