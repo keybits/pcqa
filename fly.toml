@@ -8,6 +8,7 @@ primary_region = "lhr"
 
 [env]
   PORT = "3000"
+  ORIGIN = "https://pcqa.fly.dev/"
   DB_PATH = "/data/pcqa_data/questions.sqlite3"
 
 # add a volume for our sqlite db
